@@ -4,6 +4,7 @@ class word(object):
 
 		self.w = w
 		self.edges = None
+		self.prob = {}
 
 	def increment_edge(self, n):
 
