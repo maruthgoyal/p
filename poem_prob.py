@@ -8,19 +8,19 @@ stdin = sys.stdin
 flatten = lambda l: [item for sublist in l for item in sublist]
 
 word_sets = [[[y.upper() for y in x.split()] + ['\n'] for x in poem.split('<br />')] for poem in stdin.read().splitlines() if poem != '<br />']
+word_sets = [flatten(x) for x in word_sets]
 dic = {None:word(None)}
 
 for poem in word_sets:
-	for line in poem:
-		line = [None] + line
-		for w in xrange(len(line) - 1):
-			if line[w] not in dic:
-				dic[line[w]] = word(line[w])
-			
-			if line[w+1] not in dic:
-				dic[line[w+1]] = word(line[w+1])
+	poem = [None] + poem
+	for w in xrange(len(poem) - 1):
+		if poem[w] not in dic:
+			dic[poem[w]] = word(poem[w])
+		
+		if poem[w+1] not in dic:
+			dic[poem[w+1]] = word(poem[w+1])
 
-			dic[line[w]].increment_edge(dic[line[w+1]])
+		dic[poem[w]].increment_edge(dic[poem[w+1]])
 
 # Creating Transition probabilities
 # Prob is a dictionary mapping a word to the conditional probability
