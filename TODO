@@ -1,0 +1,5 @@
+1. Implement rhyming detector
+	provides score b/w 0 and 1
+	Use longest common subsequence / approx. common subsequence
+	
+2. Provide weight to path based on rhyming score
